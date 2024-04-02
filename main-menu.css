@@ -1,0 +1,118 @@
+*{
+    background-color: #BFBFB6;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+h1 {
+    color: #262624;
+    text-align: center;
+    font-size: 300%;
+}
+
+#class-passive-display {
+    padding-left: 5px;
+    text-align: left;
+    vertical-align: top;
+    font-size: 220%;
+    position: fixed;
+    right: 0;
+    top: 72.2%;
+    width: 39.5%;
+    height: 10%;
+    background-color: #808079;
+    color: #E6E6DA;
+}
+
+b {
+    background-color: #808079;
+}
+
+p {
+    background-color: #808079;
+}
+
+#class-passive-display > p {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 90%;
+    height: 10%;
+
+}
+
+#difficulty-select {
+    font-weight: bold;
+    font-size: 250%;
+    position: fixed;
+    top: 75%;
+}
+
+#difficulty-select > select {
+    color: #FFFFF1;
+    background-color: #40403D;
+    position: absolute;
+    font-weight: bold;
+    font-size: 79%;
+    width: 75%;
+    height: 100%;
+}
+
+option {
+    background-color: #808079;
+    color: #262624;
+}
+
+#class-selected {
+    font-size: 400%;
+    border: solid;
+    border-width: 7px;
+    margin-inline: 40%;
+    margin-top: 0;
+}
+
+#class-stats-table {
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+#explain-button {
+    position: absolute;
+    margin: 0;
+    right: 3%;
+    top: 3%;
+    font-size: 300%;
+    border-width: 4px;
+}
+
+.player-img {
+    height: 550px;
+    width: 24%;
+    border-style: solid;
+    border-width: 4px;
+    border-color: black;
+    border-radius: 4%;
+}
+
+th {
+    border-style: solid;
+    border-color: black;
+    border-width: 2px;
+    background-color: #808079;
+}
+
+th > img {
+    background-color: #808079;
+    width: auto;
+    height: 40px;
+    position: relative;
+}
+
+td {
+    border-style: dashed;
+    border-color: black;
+    border-width: 2px;
+    background-color: #808079;
+}

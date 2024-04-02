@@ -1,0 +1,219 @@
+* {
+    background-color: #BFBFB6;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+.stat-table {
+  font-size: 20px;
+}
+
+.stat-img {
+  background-color: transparent;
+  height: 40px;
+  vertical-align: middle;
+}
+
+th {
+  border-style: solid;
+  border-color: black;
+  border-width: 2px;
+  background-color: #808079;
+}
+
+td {
+  border-style: dashed;
+  border-color: black;
+  border-width: 2px;
+  background-color: #808079;
+}
+
+h1 {
+  color: #262624;
+  text-align: center;
+  font-size: 300%;
+  margin: 0;
+}
+  
+a {
+  color: default;
+  text-decoration: none; /* no underline */
+}
+
+.stats-display {
+    width: 100%;
+}
+
+.stats-display button {
+  font-size: 20px;
+}
+
+.stats-display-sub {
+    float: left;
+}
+
+.bottom-display {
+    float:left;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.menu-buttons {
+    position: absolute;
+    margin: 0;
+    border-width: 2px;
+}
+
+#score-table {
+    border-width: 2px;
+    border-color: black;
+    border-style: dashed;
+}
+
+#postGame {
+    display: none;
+    width: 100%;
+    bottom: 0;
+    align-items: center;
+}
+
+#uiEnemyAnimation {
+    position: absolute; 
+    bottom: 0; 
+    left: 0; 
+}
+
+#uiDamageDone {
+    display: inline;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: rgb(1, 87, 1);
+    padding: 0.4rem 0.6rem;
+}
+
+#enemyDisplay {
+  float: right;
+}
+
+#uiDamageTaken {
+    display: inline;
+    border-style: dotted;
+    border-width: 2px;
+    border-color:rgb(126, 35, 35);
+    padding: 0.4rem 0.6rem;
+}
+
+.EnemyGraveyard {
+    width: 100%;
+    position: relative;
+    display: flex;
+    bottom: 0;
+    align-items: center;
+}
+
+#uiPlayerStats {
+    display: inline;
+    padding-inline: 0.2cm;
+    padding-block: 0.1cm;
+    border-radius: .5rem;
+    background-color: black;
+    color: lime;
+}
+
+#uiEnemyStats {
+    display: inline;
+    padding-inline: 0.2cm;
+    padding-block: 0.1cm;
+    border-radius: .5rem;
+    background-color: black;
+    color: red;
+}
+
+#uiPlayerAttack {
+    font-size: 1rem;
+    color: #fff;
+    background: #034d85;
+    padding: 0.4rem 0.6rem;
+    border-radius: .8rem;
+    transition: opacity .2s;
+}
+
+#grave-place {
+    position: relative;
+    left: 0;
+}
+
+table {
+    border-collapse: collapse;
+  }
+  
+  th, td {
+    border: 1px solid black;
+    padding: 8px;
+  }
+  
+  th {
+    border : 2px solid black;
+  }
+  
+  tr {
+    border-bottom: 1px dashed black;
+  }
+  
+  tr:last-child {
+    border-bottom: none;
+  }
+  
+  td:not(:last-child) {
+    border-right: 1px dashed black;
+  }
+
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    bottom: 0;
+    left: 0;
+    background-color: #666666;
+    position: fixed;
+    z-index: 1;
+  }  
+
+  .progress-bar-fill {
+    width: 0;
+    height: 100%;
+    background-color: #06c;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 5;
+  }
+
+  .progress-bar-best {
+    width: 6%;
+    height: 100%;
+    bottom: 0;
+    left: 47%;
+    background-color: red;
+    position: absolute;
+    z-index: 4;
+  }
+
+  .progress-bar-good {
+    width: 12%;
+    height: 100%;
+    bottom: 0;
+    left: 44%;
+    background-color: orange;
+    position: absolute;
+    z-index: 3;
+  }
+
+  .progress-bar-fine {
+    width: 20%;
+    height: 100%;
+    bottom: 0;
+    left: 40%;
+    background-color: yellow;
+    position: absolute;
+    z-index: 2;
+  }
+  

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main-menu.css">
+    <title>Broken Balance</title>
+    <style>
+        .container {
+            display: flex;
+            overflow: hidden;
+            font-size: 35px;
+        }
+
+        .column-left {
+            flex: 1;
+            padding: 20px;
+            text-align: right;
+        }
+
+        .column-right {
+            flex: 1;
+            padding: 20px;
+            text-align: left;
+        }
+
+        #hero-img {
+            background-color: #c3c3c3;
+            padding: 0px;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        select,
+        option {
+            background-color: #c3c3c3;
+            font-size: 35px;
+        }
+
+        .stat-img {
+            background-color: #808079;
+            height: 40px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <h1>Broken Balance 0.2 - Main menu</h1>
+        <a href="./guide.html" target="_blank"><button id="explain-button" data-class="guide"><img id="guide"
+                    src="./media/menu icons/Question-book.png" width="50px" alt="guide">Guide</button></a>
+        <hr style="border-top: 3px solid #000000;" class="solid">
+    </div>
+
+    <div class="container">
+        <div class="column-left">
+            <img id="hero-img" src="./media/player characters/tank.png" style="max-width: 50%;" alt="Hero image">
+        </div>
+        <div class="column-right">
+            <div style="padding-bottom: 5px;">
+                <label for="hero-selection">Choose your hero:</label>
+                <select id="hero-selection" name="hero-selection" onchange="updateStats()">
+                    <optgroup label="Basic Classes">
+                        <option value="tank">Tank</option>
+                        <option value="mage">Mage</option>
+                        <option value="assassin">Assassin</option>
+                        <option value="hunter">Hunter</option>
+                    </optgroup>
+                    <optgroup label="New Classes">
+                        <option value="sacred-blade">Sacred Blade</option>
+                        <option value="thorned">Thorned</option>
+                        <option value="holy-moly">Holy Moly</option>
+                        <option value="boxer">Boxer</option>
+                    </optgroup>
+                </select>
+            </div>
+            <div style="padding-bottom: 5px;">
+                <label for="difficulty-selection">Difficulty setting:</label>
+                <select id="difficulty-selection" name="difficulty-selection">
+                    <option value="ez">Easy</option>
+                    <option value="normal">Normal</option>
+                    <option value="hard">Hard</option>
+                </select>
+            </div>
+            <div style="padding-bottom: 15px;">
+                <table>
+                    <tr>
+                        <th>Stat Name</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Heart with Pulse.png" alt="Health">Health</td>
+                        <td id="p-hp">80</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Katana.png" alt="Attack Damage">Attack Damage
+                        </td>
+                        <td id="p-ad">1</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Comet.png" alt="Ability Power">Ability Power
+                        </td>
+                        <td id="p-ap">1</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Shield.png" alt="Armour">Armour</td>
+                        <td id="p-ar">30</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Broken shield.png"
+                                alt="Penetration">Penetration</td>
+                        <td id="p-arp">2</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Small Axe.png" alt="Cleave">Cleave</td>
+                        <td id="p-cl">2</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Clover.png" alt="Crit. Chance">Crit. Chance
+                        </td>
+                        <td id="p-crc">5</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Target.png" alt="Crit. Damage">Crit. Damage
+                        </td>
+                        <td id="p-crd">5</td>
+                    </tr>
+                </table>
+            </div>
+            <div style="padding-bottom: 45px;">
+                <h4 style="padding: 0; margin: 0;">Passive:</h4>
+                <p id="class-passive" style="padding: 0;margin: 0;"><b>Absorb</b> - absorbs every third enemy attack</p>
+            </div>
+            <div style="padding-bottom: 15px;">
+                <button id="start-button" style="font-size: 35px; background-color: #c3c3c3;">Start Game</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        function updateStats() {
+            const selectedHeroImage = document.getElementById('hero-img');
+            const selectedHero = document.getElementById('hero-selection').value;
+            const healthCell = document.getElementById('p-hp');
+            const adCell = document.getElementById('p-ad');
+            const apCell = document.getElementById('p-ap');
+            const arCell = document.getElementById('p-ar');
+            const arpCell = document.getElementById('p-arp');
+            const clCell = document.getElementById('p-cl');
+            const crcCell = document.getElementById('p-crc');
+            const crdCell = document.getElementById('p-crd');
+            const classTitle = document.getElementById('class-selected');
+            const classPassive = document.getElementById('class-passive');
+
+            switch (selectedHero) {
+                case 'tank':
+                    selectedHeroImage.src = './media/player characters/tank.png';
+                    healthCell.innerHTML = '80';
+                    adCell.innerHTML = '1';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '30';
+                    arpCell.innerHTML = '2';
+                    clCell.innerHTML = '2';
+                    crcCell.innerHTML = '5';
+                    crdCell.innerHTML = '5';
+                    classPassive.innerHTML = '<b>Absorb</b> - absorbs every third enemy attack';
+                    break;
+                case 'mage':
+                    selectedHeroImage.src = './media/player characters/mage.png';
+                    healthCell.innerHTML = '30';
+                    adCell.innerHTML = '1';
+                    apCell.innerHTML = '5';
+                    arCell.innerHTML = '1';
+                    arpCell.innerHTML = '1';
+                    clCell.innerHTML = '1';
+                    crcCell.innerHTML = '20';
+                    crdCell.innerHTML = '40';
+                    classPassive.innerHTML = '<b>Magical melt</b> - as much <span style="color:#A9C2F0; background-color: transparent;">Ability Power</span> you have, that much <b>Armour</b> you ignore with <span style="color:#ECB476; background-color: transparent;">Attack Damage</span>';
+                    break;
+                case 'assassin':
+                    selectedHeroImage.src = './media/player characters/assassin.png';
+                    healthCell.innerHTML = '30';
+                    adCell.innerHTML = '12';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '4';
+                    arpCell.innerHTML = '25';
+                    clCell.innerHTML = '30';
+                    crcCell.innerHTML = '15';
+                    crdCell.innerHTML = '20';
+                    classPassive.innerHTML = '<b>Pain bringer</b> - Bonus <b>Penetration</b> equal to 50% <span style="color:#ECB476; background-color: transparent;">Attack Damage</span>.';
+                    break;
+                case 'hunter':
+                    selectedHeroImage.src = './media/player characters/hunter.png';
+                    healthCell.innerHTML = '30';
+                    adCell.innerHTML = '15';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '1';
+                    arpCell.innerHTML = '4';
+                    clCell.innerHTML = '5';
+                    crcCell.innerHTML = '30';
+                    crdCell.innerHTML = '50';
+                    classPassive.innerHTML = '<b>Precision</b> - Difficulty always on hard, attack bar more rewarding. It goes from 50% damage if totally missed to 150% damage if attack perfectly timed.';
+                    break;
+                case 'sacred-blade':
+                    selectedHeroImage.src = './media/player characters/sacred-blade.png';
+                    healthCell.innerHTML = '30';
+                    adCell.innerHTML = '15';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '1';
+                    arpCell.innerHTML = '1';
+                    clCell.innerHTML = '5';
+                    crcCell.innerHTML = '15';
+                    crdCell.innerHTML = '30';
+                    classPassive.innerHTML = '<b>Blessed Blade</b> - <span style="color:#A9C2F0; background-color: transparent;">Ability Power</span> type damage bonus, equal to 30% of <span style="color:#ECB476; background-color: transparent;">Attack Damage</span>';
+                    break;
+                case 'thorned':
+                    selectedHeroImage.src = './media/player characters/thorned.png';
+                    healthCell.innerHTML = '80';
+                    adCell.innerHTML = '1';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '40';
+                    arpCell.innerHTML = '1';
+                    clCell.innerHTML = '5';
+                    crcCell.innerHTML = '15';
+                    crdCell.innerHTML = '10';
+                    classPassive.innerHTML = '<b>Thorns</b> - Each 4 <b>Armour</b> makes the enemy hurt itself for 1% of its own <span style="color:#ECB476; background-color: transparent;">Attack Damage</span> as <span style="color:#A9C2F0; background-color: transparent;">Ability Power</span> damage. This effect can <span style="color:#DE9D9B; background-color: transparent;">Crit</span> for double damage based on your <span style="color:#DE9D9B; background-color: transparent;">Crit Chance</span>.';
+                    break;
+                case 'holy-moly':
+                    selectedHeroImage.src = './media/player characters/holy-moly.png';
+                    healthCell.innerHTML = '50';
+                    adCell.innerHTML = '5';
+                    apCell.innerHTML = '15';
+                    arCell.innerHTML = '20';
+                    arpCell.innerHTML = '1';
+                    clCell.innerHTML = '5';
+                    crcCell.innerHTML = '20';
+                    crdCell.innerHTML = '20';
+                    classPassive.innerHTML = '<b>Faith</b> - Moly does not believe in magic. She only believes in her Lord and wears a suspicious dark cloak. As such, Molys <b>Armour</b> is also 50% effective <span style="color:#A9C2F0; background-color: transparent;">Magic Resist</span> (10 <b>Armour</b> = 5 <span style="color:#A9C2F0; background-color: transparent;">Magic Resist</span>).';
+                    break;
+                case 'boxer':
+                    selectedHeroImage.src = './media/player characters/boxer.webp';
+                    healthCell.innerHTML = '80';
+                    adCell.innerHTML = '10';
+                    apCell.innerHTML = '1';
+                    arCell.innerHTML = '30';
+                    arpCell.innerHTML = '0';
+                    clCell.innerHTML = '0';
+                    crcCell.innerHTML = '35';
+                    crdCell.innerHTML = '30';
+                    classPassive.innerHTML = '<b>One Two Combo</b> - Attacks enemies with a two punch combo dealing 20% more <span style="color:#ECB476; background-color: transparent;">Attack Damage</span> in total and increasing Chain Attack twice.';
+                    break;
+            }
+        }
+
+        const startButton = document.getElementById('start-button');
+        startButton.addEventListener('click', function () {
+            const selectedClass = document.getElementById('hero-selection').value;
+            const selectedDifficulty = document.getElementById('difficulty-selection').value;
+            if (selectedClass != 'guide') {
+                if (selectedClass == 'hunter') window.location.href = `game.html?class=${selectedClass}&difficulty=hard`;
+                else window.location.href = `game.html?class=${selectedClass}&difficulty=${selectedDifficulty}`;
+            }
+            else window.open('./guide.html', '_blank');
+        });
+    </script>
+
+</body>
+
+</html>

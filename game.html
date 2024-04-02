@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/x-icon" href="./media/favicon.webp">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="startGame()">
+    <h1 id="game-title">Broken Balance 0.2</h1>
+    <a href="./guide.html" target="_blank"><button id="explain-button" class="menu-buttons"
+            style="display: inline-block; vertical-align: top; text-align: center; width: 100px; height: 60px; right: 3%; top: 1%;"><img
+                src="./media/menu icons/Question-book.png" width="30px"><br><span
+                stlye="display: block;">Guide</span></button></a>
+    <button id="leaderboard-button" class="menu-buttons"
+        style="display: inline-block; vertical-align: top; text-align: center; width: 100px; height: 60px; right: 9%; top: 1%;"
+        onmousedown="gameOver()"><img src="./media/menu icons/leaderboard.png" width="30px"><span
+            style="display: block;">Leaderboard</span></button>
+    <button id="leaderboard-button" class="menu-buttons"
+        style="display: inline-block; vertical-align: top; text-align: center; width: 100px; height: 60px; right: 15%; top: 1%;"
+        onmousedown='window.location.href = "characterSelect.html"'><img src="./media/menu icons/return.svg"
+            width="30px"><span style="display: block;">Return</span></button>
+    <hr style="border-top: 3px solid #000000;" class="solid">
+    <div id="inGame" class="stats-display">
+        <div class="stats-display-sub">
+            <table class="stat-table">
+                <tr>
+                    <th>Player Stats</th>
+                    <th style="width: 40%;">Value</th>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Heart with Pulse.png" alt="Health">Health</td>
+                    <td id="uiPlayerHealth">80</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Katana.png" alt="Attack Damage">Attack Damage
+                    </td>
+                    <td id="uiPlayerAD">1</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Comet.png" alt="Ability Power">Ability Power
+                    </td>
+                    <td id="uiPlayerAP">1</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Shield.png" alt="Armour">Armour</td>
+                    <td id="uiPlayerArmour">30</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Broken shield.png" alt="Penetration">Penetration
+                    </td>
+                    <td id="uiPlayerPen">2</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Small Axe.png" alt="Cleave">Cleave</td>
+                    <td id="uiPlayerCleave">2</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Clover.png" alt="Crit. Chance">Crit. Chance
+                    </td>
+                    <td id="uiPlayerCritChance">5</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Target.png" alt="Crit. Damage">Crit. Damage
+                    </td>
+                    <td id="uiPlayerCritDamage">5</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Level.png" alt="Level">Level
+                    </td>
+                    <td id="uiPlayerLevel">5</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Experience.png" alt="Eperience">Experience
+                    </td>
+                    <td id="uiPlayerEXP">5</td>
+                </tr>
+                <tr>
+                    <td><img class="stat-img" src="./media/stat icons/Required Experience.png" alt="Required Experience">Req. Eperience
+                    </td>
+                    <td id="uiPlayerREXP">5</td>
+                </tr>
+            </table>
+            <h2 id="uiPlayerScore">Score = 0</h2>
+        </div>
+        <table style="display: flex; float: left; margin-left: 15px;">
+            <tr>
+                <th>Item</th>
+                <th>Stats</th>
+            </tr>
+            <tr>
+                <td>lorem</td>
+                <td>ipsum</td>
+            </tr>
+        </table>
+        <div id="enemyDisplay">
+            <div class="stats-display-sub">
+                <table class="stat-table">
+                    <tr>
+                        <th>Enemy Stats</th>
+                        <th style="width: 40%;">Value</th>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Heart with Pulse.png" alt="Health">Health</td>
+                        <td id="uiEnemyHealth">80</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Katana.png" alt="Attack Damage">Attack Damage
+                        </td>
+                        <td id="uiEnemyAD">1</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Comet.png" alt="Ability Power">Ability Power
+                        </td>
+                        <td id="uiEnemyAP">1</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Shield.png" alt="Armour">Armour</td>
+                        <td id="uiEnemyArmour">30</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Broken shield.png"
+                                alt="Penetration">Penetration
+                        </td>
+                        <td id="uiEnemyPen">2</td>
+                    </tr>
+                    <tr>
+                        <td><img class="stat-img" src="./media/stat icons/Small Axe.png" alt="Cleave">Cleave</td>
+                        <td id="uiEnemyCleave">2</td>
+                    </tr>
+                </table>
+            </div><br>
+            <div style="position: relative; height: 250px; width: 200px; overflow: hidden;" class="stats-display-sub"
+                style="height: 250px;">
+                <img id="uiEnemyAnimation" src="./media/enemy animations/1-default.png" width="150" height=auto>
+            </div>
+        </div>
+        <div class="bottom-display">
+            <button accesskey="a" id="uiPlayerAttack" onmousedown="attack()">Attack</button>
+            <h4 id="uiDamageDone">0 Damage Done</h4>
+            <h4 id="uiDamageTaken">0 Damage Taken</h4>
+        </div>
+        <div class="progress-bar">
+            <div class="progress-bar-fill"></div>
+            <div class="progress-bar-best"></div>
+            <div class="progress-bar-good"></div>
+            <div class="progress-bar-fine"></div>
+        </div>
+
+    </div>
+    <div id="postGame">
+        <h1>Game Over - You died</h1>
+        <form id="score-form">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="name">Password:</label>
+            <input type="text" id="password" name="name" placeholder="Can leave empty"><br><br>
+            <button id="submit-score-button" type="submit">Submit</button>
+        </form>
+        <h2>Broke the game:</h2>
+        <p>Leon = 2 times, Mata = 1 time</p>
+        <h2>Leaderboard</h2>
+        <table id="score-table">
+            <thread>
+                <tr>
+                    <th>Place</th>
+                    <th>Name</th>
+                    <th>Score</th>
+                    <th>MaxHP</th>
+                    <th>Aattack Damage</th>
+                    <th>Ability Power</th>
+                    <th>Armour</th>
+                    <th>Pen</th>
+                    <th>Cleave</th>
+                    <th>Crit%</th>
+                    <th>CritDMG%</th>
+                    <th>Level</th>
+                    <th>Damage Done</th>
+                    <th>Damage Mitigated</th>
+                    <th>Damage Taken</th>
+                    <th>AD Damage</th>
+                    <th>AP Damage</th>
+                </tr>
+            </thread>
+        </table>
+    </div>
+    <div class="EnemyGraveyard">
+        <h3>Graveyard</h3>
+    </div>
+    <p id="grave-place"></p>
+    <script src="script.js"></script>
+</body>
+
+</html>

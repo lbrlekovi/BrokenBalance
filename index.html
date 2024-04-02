@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broken Balance</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body, html {
+            height: 100%;
+        }
+
+        body {
+            background: linear-gradient(to right, rgba(0, 0, 0, 1), rgba(58, 47, 43, 1)), 
+                        linear-gradient(to left, rgba(0, 0, 0, 1), rgba(58, 47, 43, 1));
+            background-position: left top, right top;
+            background-repeat: no-repeat;
+            background-size: 50% 100%;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #game-poster-container {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        #game-poster {
+            display: block;
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        #start-button {
+            font-family: "Maiandra GD", sans-serif;
+            position: absolute;
+            top: 75%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgb(255, 242, 169);
+            color: rgb(214, 129, 0);
+            padding: 10px 40px;
+            border-radius: 8px;
+            font-size: 24px;
+            font-weight: bold;
+            text-decoration: none;
+            overflow: hidden;
+            z-index: 1;
+            animation: shining-effect 2s linear infinite;
+        }
+
+        @keyframes shining-effect {
+            0% { box-shadow: 0 0 10px 0 gold, 0 0 20px 5px gold; }
+            50% { box-shadow: 0 0 10px 5px gold, 0 0 20px 10px gold; }
+            100% { box-shadow: 0 0 10px 0 gold, 0 0 20px 5px gold; }
+        }
+
+        @keyframes animation-fade-out-shine {
+            0% {
+                box-shadow: 0 0 10px 0 gold, 0 0 20px 0 gold;
+            }
+            50% {
+                box-shadow: 0 0 300px 30px gold, 0 0 50px 5px gold;
+            }
+            100% {
+                box-shadow: 0 0 300px 30px rgba(255, 217, 0, 0), 0 0 50px 5px rgba(255, 217, 0, 0);
+            }
+        }
+
+        @keyframes fade-out-animation {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+    </style>
+</head>
+<body>
+    <div id="black-out" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: black; opacity: 0; z-index: -3;"></div>
+    <div id="game-poster-container">
+        <img id="game-poster" src="./media/broken-balance-ad.png" alt="Game poster">
+        <a id="start-button" href="#" onclick="fadeOut()">Start</a>
+    </div>
+
+    <script>
+        function fadeOut() {
+            let audioStart = new Audio('./media/start-sound.mp3');
+            audioStart.play();
+            document.getElementById("start-button").style.animation = "animation-fade-out-shine 2s forwards";
+            document.getElementById("black-out").style.zIndex = "2";
+            document.getElementById("black-out").style.animation = "fade-out-animation 2s backwards";
+
+            setTimeout(function () {
+                window.location.href = "characterSelect.html";
+            }, 2000); // Adjust the delay as needed (1s = 1000ms)
+        }
+    </script>
+    
+</body>
+</html>

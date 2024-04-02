@@ -1,0 +1,21 @@
+http://www.wolfensteingoodies.com/archives/olddoom/music.htm - extract sounds for other kill levels of audio
+abillities and items
+intellect (XP scaling)
+speech: "more power you sought. invincible you are, or so you thought. in my lair now you're caught. this will be the last battle you've ever fought."
+
+meet other dead players along the dungeon
+
+fight the top player as the final boss
+
+add hp bar - UI element
+pozadina šuma itd.
+linearna mapa unutar koje neprijatelji imaju posebne statse
+
+heroj koji radi više štete što više vićeš u mikrofon XD
+vampir heroj
+
+a short animation showing how much XP you gained, red arrow for overkill exp
+
+map button
+items activateable
+implement gold for item purchase

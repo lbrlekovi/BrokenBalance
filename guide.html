@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <h1>Guide</h1>
+    <hr style="border-top: 3px solid #000000;" class="solid">
+    <ul>
+        <li>HP - Health Points, how much health you have left</li>
+        <li>AD - Attack Damage, how much physical damage you do, it is affected by enemy armour, your pen and cleave
+        </li>
+        <li>AP - Ability Power, how much magic damage you do, is not affected by anything (true damage - for now)</li>
+        <li>Armour - Percentage of enemy damage reduced (if you have 50 armour you will reduce the damage by 50%)</li>
+        <li>Pen - Armour penetration, how much enemy armour you will ignore</li>
+        <li>Cleave - Armour reduction, reduces the enemy armour by percentage (if you have 50 cleave, you will reduce
+            enemy armour by 50%)</li>
+        <li>Crit% - Percent chance to get a critical attack (the damage critical attacks do ignores enemy armour - in
+            other words, crit is true damage)</li>
+        <li>CritDMG% - A percentage of your AD gets converted to the damage done (if you have 50 CritDMG% and 50 AD, you
+            will do 25 true damage)</li>
+        <li>Level - The level of your character (you can check enemy level by opening the web browser console - F12 for
+            google chrome)</li>
+        <li>EXP - The experience ammount of your character</li>
+        <li>Required EXP - How much EXP you need for the next level, it rises by 40% + 10 XP each level up.</li>
+    </ul>
+
+    <h2>Difficulty options</h2>
+    <ol>
+        <li>Easy - Gives 0.8 times ammount of score, the enemy attack is instantaneous and always gives its 100%</li>
+        <li>Normal - Damage scales based on how accurately the player hit the middle of the attack bar, the damage scales like a concave function so it is very forgiving</li>
+        <li>Hard - Damage scales from 50% to 100% based exactly on how accurately the player hit the  middle of the  bar</li>
+    </ol>
+    <figure style="float: left; text-align: center; width: 45%;">
+        <img src="./media/graphs/normalgamemode.png" height="250" width="auto">
+        <figcaption>Normal difficulty damage scaling</figcaption>
+    </figure>
+    <figure style="float: right; text-align: center; width: 45%;">
+        <img src="./media/graphs/hardgamemode.png" height="350" width="auto">
+        <figcaption>Hard difficulty damage scaling</figcaption>
+    </figure>
+
+    <h2>Damage calculation formula if you want to see it</h2>
+    <p>REGULAR DAMAGE: player.AD*(1-(((enemy.Armour*(1-player.Cleave/100))-player.Pen)/100)) + player.AP</p>
+    <p>CRITICAL DAMAGE: player.AD * (player.CritDamage/100)</p>
+    <h2>EXP calculations</h2>
+    <figure style="float: right; text-align: center; width: 45%;">
+        <img src="./media/graphs/enemyexp.png" height="350" width="auto">
+        <figcaption>Enemy level scaling</figcaption>
+    </figure>
+    <p>player.EXP += enemy.MAXHP + enemy.AD*3 + enemy.AP*4 + enemy.Armour*2 + enemy.Cleave*2 + enemy.Pen*3</p>
+    <p>enemyExp += Math.log(1.4 * enemyExp + 1.1) / Math.log(50)</p>
+    <p>In short, the enemy gets their EXP incresed logarithmically whilst the player gets more EXP from tougher enemies
+    </p>
+    <p>The enemy stats are determined by their level and their other stats<br>
+        For example, enemy HP is random but based on their level<br>
+        If the enemy randomly gets the most HP it can get it's AD will be reduced and so will be the other stats</p>
+
+    <h2>Specialties (Mechaincs)</h2>
+    <p><b>Precision bar</b> - The bar at the bottom of the screen, it represents a skill based mechanic. First you must initiate an attack by clicking attack 
+        or by pressing the (A) button. A blue bar will start filling the bar, your objective is to press attack again as close to the 50% mark as possible.
+        The more precise you are the more damage you will do. This mechanic affects your damage drastically. If you completely miss you will do 50% damage 
+        whereas if you're perfectly percise you will achieve 100% of your deserved damage. The damage modifier follows different functions based on the difficulty you pick. 
+    </p>
+    <p><b>Overkill</b> - Caused when the enemy ends up with negative health bigger than it's original max hp (if the
+        MAXHP was 10 and it's current health is -11), 
+        gives an exponentially increasing ammount of EXP (1.9 to the power of the enemy level) because the bigger the
+        enemy level the harder it is to overkill, 
+        making one shot builds survive for longer</p>
+    <p><b>Magic scaling</b> - The more AP you get the more AP you get. For each time you upgrade your AP the next
+        upgrade will increase the AP offer by a small ammount, starting with an increase of 1 and then less with each upgrade. It follows this mathematic formula: (1/1.3)^playerAPUpgrade</p>
+    <p><b>Chain attack</b> - The longer you fight your opponent the more damage you will do. The damage increases by 10% with each attack.</p>  
+    <p><b>Critical experience</b> - If you score a critical hit you are rewarded with the damage dealt as bonus experience. This mechanic was necessary to make crit builds viable.</p> 
+
+    <h2>Recommended builds</h2>
+    <p><b>Tank mage</b> - Put your points into AP, health and armour. If you manage to survive for long enough the AP
+        scaling follows the enemy scaling. It utilises the chain attack mechanic and the magic scaling mechanic.</p>
+    <p><b>Assassin</b> - Spam AD and penetration, you will overkill enemies for a while (getting an EXP bonus) before
+        getting outscaled and instakilled. Provides quickest playtroughs.</p>
+    <p><b>Bruiser</b> - Keep a balance between HP and AD upgrades, proves to be the most solid method that can bring you
+        far but gets weaker over time. It utilises the chain attack mechanic.</p>
+    <p><b>Crits For Days?</b> - In theory having critical strike stats developed would make AD increasingly useful, it
+        is however reliant on luck. Utilises the critical experience mechanic.</p>
+    
+    <h2>Hotkeys</h2>
+    <p>Ever been bored of having to move your mouse in order to attack? ♪Move it move it♫ no longer.<br>
+        A - attack<br>
+    </p>
+
+    <h2>Patch notes</h2>
+    <p><b>Patch 0.2</b> - Character select remade, color pallete changed, added 4 new characters (sacred blade, holy moly, boxer, thorned), added intro</p>
+</body>
